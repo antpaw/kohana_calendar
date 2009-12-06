@@ -332,7 +332,7 @@ class Calendar extends Event_Subject {
 	 *
 	 * @return  string
 	 */
-	public function render($tmpl = 'kohana_calendar')
+	public function render($tmpl = 'calendar')
 	{
 		$view =  new View($tmpl, array
 		(

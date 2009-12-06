@@ -12,7 +12,7 @@ class Controller_Calendar extends Controller {
 				);
 		
 		$data = array(
-			'content'		=> $calendar->render('calendar'),
+			'content'		=> $calendar->render(),
 		);
 		
 		$this->request->response = new View('index', $data);
