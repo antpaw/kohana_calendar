@@ -15,39 +15,53 @@ unset($qs['day']);
 $path_info = Arr::get($_SERVER, 'PATH_INFO');
 $prev = $path_info.URL::query(array_merge($qs, array('month' => date('n', $prev), 'year' => date('Y', $prev))));
 $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next), 'year' => date('Y', $next))));
-
 ?>
-<div class="controls">
-	<span class="prev"><?php echo html::anchor($prev, '&laquo;') ?></span>
-	<span class="title"><?php echo strftime('%B %Y', mktime(0, 0, 0, $month, 1, $year)) ?></span>
-	<span class="next"><?php echo html::anchor($next, '&raquo;') ?></span>
-</div>
+
 <table class="calendar">
-<tr>
-<?php foreach ($days as $weekday_name): ?>
-<th><?php echo $weekday_name ?></th>
-<?php endforeach ?>
-</tr>
-<?php foreach ($weeks as $week): ?>
-<tr>
-<?php foreach ($week as $day):
+	<caption>
+		<span class="prev"><?php echo html::anchor($prev, '&larr;') ?></span>
+		<span class="title"><?php echo strftime('%B %Y', mktime(0, 0, 0, $month, 1, $year)) ?></span>
+		<span class="next"><?php echo html::anchor($next, '&rarr;') ?></span>
+	</caption>
+	<thead>
+		<tr>
+			<?php foreach ($days as $weekday_name): ?>
+			<th><?php echo $weekday_name ?></th>
+			<?php endforeach ?>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($weeks as $week): ?>
+		<tr>
+				<?php foreach ($week as $day):
 
-list ($number, $current, $data) = $day;
+					list($number, $current, $data) = $day;
 
-if (is_array($data))
-{
-	$classes = $data['classes'];
-	$output = empty($data['output']) ? '' : '<ul class="output"><li>'.implode('</li><li>', $data['output']).'</li></ul>';
-}
-else
-{
-	$classes = array();
-	$output = '';
-}
+					if (is_array($data))
+					{
+						$classes = $data['classes'];
+						$output = '';
+						if (!empty($data['output']))
+						{
+							$output = '<ul class="output"><li>'
+								.implode('</li><li>', $data['output'])
+								.'</li></ul>';
+						}
+					}
+					else
+					{
+						$classes = array();
+						$output = '';
+					}
 
-?>
-<td class="<?php echo implode(' ', $classes) ?>"><span class="day"><?php echo $day[0] ?></span><?php echo $output ?></td>
-<?php endforeach ?>
-</tr>
-<?php endforeach ?>
+					?>
+			<td class="<?php echo implode(' ', $classes) ?>">
+				<span class="day"><?php echo $day[0] ?></span>
+						<?php echo $output ?>
+			</td>
+				<?php endforeach ?>
+		</tr>
+		<?php endforeach ?>
+	</tbody>
 </table>
+
