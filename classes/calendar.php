@@ -314,7 +314,7 @@ class Calendar extends Event_Subject {
 	 * @param   array  UNIX timestamp
 	 * @return  void
 	 */
-	public function notify($data)
+	public function notify($data = null)
 	{
 		// Reset observed data
 		$this->observed_data = array

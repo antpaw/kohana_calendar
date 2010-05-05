@@ -54,7 +54,7 @@ abstract class Event_Subject implements SplSubject {
 	 * @param   mixed   message string, object, or array
 	 * @return  object
 	 */
-	public function notify($message)
+	public function notify($message = null)
 	{
 		foreach ($this->listeners as $obj)
 		{
