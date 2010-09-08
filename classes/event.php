@@ -134,7 +134,7 @@ class Event extends Event_Observer {
 	 * @param   string  CSS class name
 	 * @return  object
 	 */
-	public function notify_msg($data)
+	public function notify($data)
 	{
 		// Split the date and current status
 		list ($month, $day, $year, $week, $current) = $data;

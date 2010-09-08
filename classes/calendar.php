@@ -86,7 +86,6 @@ class Calendar extends Event_Subject {
 	{
 		empty($month) and $month = date('n'); // Current month
 		empty($year)  and $year  = date('Y'); // Current year
-
 		// Set the month and year
 		$this->month = (int) $month;
 		$this->year  = (int) $year;
@@ -234,7 +233,7 @@ class Calendar extends Event_Subject {
 			for ($i = $n - $w + 1, $t = $w; $t > 0; $t--, $i++)
 			{
 				// Notify the listeners
-				$this->notify_msg(array($this->month - 1, $i, $this->year, $week_number, FALSE));
+				$this->notify(array($this->month - 1, $i, $this->year, $week_number, FALSE));
 
 				// Add previous month padding days
 				$week[] = array($i, FALSE, $this->observed_data);
@@ -255,7 +254,7 @@ class Calendar extends Event_Subject {
 			}
 
 			// Notify the listeners
-			$this->notify_msg(array($this->month, $i, $this->year, $week_number, TRUE));
+			$this->notify(array($this->month, $i, $this->year, $week_number, TRUE));
 
 			// Add days to this month
 			$week[] = array($i, TRUE, $this->observed_data);
@@ -273,7 +272,7 @@ class Calendar extends Event_Subject {
 			for ($i = 1, $t = 6 - $w; $t > 0; $t--, $i++)
 			{
 				// Notify the listeners
-				$this->notify_msg(array($this->month + 1, $i, $this->year, $week_number, FALSE));
+				$this->notify(array($this->month + 1, $i, $this->year, $week_number, FALSE));
 
 				// Add next month padding days
 				$week[] = array($i, FALSE, $this->observed_data);
@@ -324,7 +323,7 @@ class Calendar extends Event_Subject {
 		);
 
 		// Send a notify
-		parent::notify_msg($data);
+		parent::notify($data);
 	}
 
 	/**

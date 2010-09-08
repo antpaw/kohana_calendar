@@ -15,8 +15,8 @@ unset($qs['day']);
 $path_info = Arr::get($_SERVER, 'PATH_INFO');
 $prev = $path_info.URL::query(array_merge($qs, array('month' => date('n', $prev), 'year' => date('Y', $prev))));
 $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next), 'year' => date('Y', $next))));
-?>
 
+?>
 <table class="calendar">
 	<caption>
 		<span class="prev"><?php echo html::anchor($prev, '&larr;') ?></span>
@@ -33,35 +33,26 @@ $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next)
 	<tbody>
 		<?php foreach ($weeks as $week): ?>
 		<tr>
-				<?php foreach ($week as $day):
-
-					list($number, $current, $data) = $day;
-
-					if (is_array($data))
+			<?php foreach ($week as $day):
+				list($number, $current, $data) = $day;
+				
+				$output = NULL;
+				$classes = array();
+				if (is_array($data))
+				{
+					$classes = $data['classes'];
+					if ( ! empty($data['output']))
 					{
-						$classes = $data['classes'];
-						$output = '';
-						if (!empty($data['output']))
-						{
-							$output = '<ul class="output"><li>'
-								.implode('</li><li>', $data['output'])
-								.'</li></ul>';
-						}
+						$output = '<ul class="output"><li>'.implode('</li><li>', $data['output']).'</li></ul>';
 					}
-					else
-					{
-						$classes = array();
-						$output = '';
-					}
-
-					?>
+				}
+			?>
 			<td class="<?php echo implode(' ', $classes) ?>">
 				<span class="day"><?php echo $day[0] ?></span>
-						<?php echo $output ?>
+				<?php echo $output ?>
 			</td>
-				<?php endforeach ?>
+			<?php endforeach ?>
 		</tr>
 		<?php endforeach ?>
 	</tbody>
 </table>
-
