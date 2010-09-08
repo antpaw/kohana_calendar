@@ -54,14 +54,26 @@ abstract class Event_Subject implements SplSubject {
 	 * @param   mixed   message string, object, or array
 	 * @return  object
 	 */
-	public function notify($message)
+	public function notify_msg($message)
 	{
 		foreach ($this->listeners as $obj)
 		{
-			$obj->notify($message);
+			$obj->notify_msg($message);
 		}
 
 		return $this;
 	}
 
+	/**
+	 * Notify all attached observers of a new message.
+	 *
+	 * @chainable
+	 * @param   mixed   message string, object, or array
+	 * @return  object
+	 */
+	public function notify()
+	{
+		return parent::notify();
+	}
+	
 } // End Event Subject

@@ -65,6 +65,6 @@ abstract class Event_Observer implements SplObserver {
 	 * @param   mixed   message string, object, or array
 	 * @return  void
 	 */
-	abstract public function notify($message);
+	abstract public function notify_msg($message);
 
 } // End Event Observer
