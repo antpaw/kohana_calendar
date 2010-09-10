@@ -86,6 +86,7 @@ class Calendar extends Event_Subject {
 	{
 		empty($month) and $month = date('n'); // Current month
 		empty($year)  and $year  = date('Y'); // Current year
+
 		// Set the month and year
 		$this->month = (int) $month;
 		$this->year  = (int) $year;
@@ -313,7 +314,7 @@ class Calendar extends Event_Subject {
 	 * @param   array  UNIX timestamp
 	 * @return  void
 	 */
-	public function notify($data = null)
+	public function notify($data)
 	{
 		// Reset observed data
 		$this->observed_data = array
