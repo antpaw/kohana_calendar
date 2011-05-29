@@ -245,7 +245,7 @@ class Calendar extends Event_Subject {
 		// i = number of day
 		for ($i = 1; $i <= $total; $i++)
 		{
-			if ($days % 7 === 0)
+			if ($days % 7 === 0 && $days !== 0)
 			{
 				// Start a new week
 				$month[] = $week;
