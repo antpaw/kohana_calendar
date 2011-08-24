@@ -47,7 +47,7 @@ $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next)
 					}
 				}
 			?>
-			<td class="<?php echo implode(' ', $classes) ?>">
+			<td id="<?php echo implode('-', array('date',$year,$month,$day[0])); ?>" class="<?php echo implode(' ', $classes) ?>">
 				<span class="day"><?php echo $day[0] ?></span>
 				<?php echo $output ?>
 			</td>
