@@ -16,6 +16,12 @@ $path_info = Arr::get($_SERVER, 'PATH_INFO');
 $prev = $path_info.URL::query(array_merge($qs, array('month' => date('n', $prev), 'year' => date('Y', $prev))));
 $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next), 'year' => date('Y', $next))));
 
+// Maintain a Month Offset to find out the actual month in cas e of padding days
+// Initially assume prev month so -1
+// increment by 1 everytime day = 1
+// Actual month = $month + $month_offset
+$month_offset = -1;
+
 ?>
 <table class="calendar">
 	<caption>
@@ -35,7 +41,10 @@ $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next)
 		<tr>
 			<?php foreach ($week as $day):
 				list($number, $current, $data) = $day;
-				
+                                if ($number === 1) 
+                                { 
+                                    $month_offset++;
+                                }
 				$output = NULL;
 				$classes = array();
 				if (is_array($data))
@@ -47,7 +56,7 @@ $next = $path_info.URL::query(array_merge($qs, array('month' => date('n', $next)
 					}
 				}
 			?>
-			<td id="<?php echo implode('-', array('date',$year,$month,$day[0])); ?>" class="<?php echo implode(' ', $classes) ?>">
+			<td id="<?php echo implode('-', array('date',$year,($month+$month_offset),$day[0])); ?>" class="<?php echo implode(' ', $classes) ?>">
 				<span class="day"><?php echo $day[0] ?></span>
 				<?php echo $output ?>
 			</td>
