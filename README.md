@@ -2,6 +2,9 @@
 
 ### [Documentation](http://docs.kohanaphp.com/libraries/calendar)
 
+### The Files and Class Names have been renamed to free up the name 'Event' for another module.
+May be this 'disconnects' this fork from the original repo, but couldn't help.
+
 #### new added
 - `render()` has now a paramerter that defines the location of the `View` file
 
