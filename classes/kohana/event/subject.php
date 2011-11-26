@@ -9,7 +9,7 @@
  * @copyright  (c) 2007-2008 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-abstract class Event_Subject {
+abstract class Kohana_Event_Subject {
 
 	// Attached subject listeners
 	protected $listeners = array();
@@ -21,9 +21,9 @@ abstract class Event_Subject {
 	 * @param   object  Event_Observer
 	 * @return  object
 	 */
-	public function attach(Event_Observer $obj)
+	public function attach(Kohana_Event_Observer $obj)
 	{
-		if ( ! ($obj instanceof Event_Observer))
+		if ( ! ($obj instanceof Kohana_Event_Observer))
 			throw new Kohana_Exception('eventable.invalid_observer', get_class($obj), get_class($this));
 
 		// Add a new listener
