@@ -9,7 +9,7 @@
  * @copyright  (c) 2007-2008 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-class Calendar extends Event_Subject {
+class Calendar extends Kohana_Event_Subject {
 
 	// Start the calendar on Sunday by default
 	public static $start_monday = FALSE;
@@ -120,7 +120,7 @@ class Calendar extends Event_Subject {
 	 */
 	public function event($name = NULL)
 	{
-		return new Event($this);
+		return new Calendar_Observer($this);
 	}
 
 	/**
